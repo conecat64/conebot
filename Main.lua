@@ -32,7 +32,8 @@ end
 
 client:on('ready', function()
     Globals.StartTime = os.time()
-    
+
+    print('Hello from Raspberry PI!')
     print('Logged in as ' .. client.user.username .. '!')
     client:setActivity(Constants.PREFIX..'help || conecorp.cc')
 end)
