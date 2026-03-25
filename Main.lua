@@ -37,18 +37,19 @@ client:on('ready', function()
 end)
 
 client:on('messageCreate', function(message)
-    local content = message.content:lower()
+    local content = message.content
     local args = content:split(' ')
     local prefixLength = #Constants.PREFIX
+    local firstArg = args[1]:lower()
 
-    local prefix = args[1]:sub(1, prefixLength):match(Constants.PREFIX)
+    local prefix = firstArg:sub(1, prefixLength):match(Constants.PREFIX)
     local isMod = isModerator(message)
 
     if message.author.bot then
         return
     end
 
-    local command = args[1]:gsub(Constants.PREFIX, '')
+    local command = firstArg:gsub(Constants.PREFIX, '')
     local handler, executingCommand = findHandler(command)
 
     if not handler then

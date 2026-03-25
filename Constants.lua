@@ -72,7 +72,7 @@ return {
         ROBLOX_ID_NOT_FOUND = 'Could not retrieve Roblox ID for inputted user.',
         NO_USERNAME = 'No username was inputted.',
         DATA_NOT_CREATED = 'No data could be retrieved.',
-        NOT_VERIFIED = 'User is not verified.',
+        NOT_VERIFIED = 'User is not verified.'
     },
 
     COMMANDS = {
@@ -89,6 +89,7 @@ return {
         'uptime',
         'test',
         'purge',
+        'shutdown'
     },
 
     ADMIN_ROLES = {
