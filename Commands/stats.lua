@@ -49,27 +49,26 @@ function Stats.Execute(message, args)
         local totalTimesPlayed = 0
         local maps = {}
 
-        for key, info in pairs(data.Stats.Maps) do
-            local displayName = Constants.PLACES.SR.MAP_NAMES[key]
+        for index, mapInfo in ipairs(Constants.PLACES.SR.MAP_NAMES) do
+            local key = mapInfo.ID
+            local displayName = mapInfo.Display
 
-            if not displayName then goto continue end
-
-            local bestTime = formatTime(info.BestTime, 'Precise')
-            local timesPlayed = addCommas(info.TimesPlayed)
+            local saveData = data.Stats.Maps[key]
+            local bestTime = formatTime(saveData.BestTime, 'Precise')
+            local timesPlayed = addCommas(saveData.TimesPlayed)
 
             if longestLength < #displayName then
                 longestLength = #displayName
             end
 
-            maps[key] = {
+            maps[index] = {
+                Key = key,
                 Display = displayName,
                 BestTime = bestTime,
                 TimesPlayed = timesPlayed
             }
 
-            totalTimesPlayed = totalTimesPlayed + info.TimesPlayed
-
-            ::continue::
+            totalTimesPlayed = totalTimesPlayed + saveData.TimesPlayed
         end
 
         local content = '**Best Times**\n```ansi\n'
