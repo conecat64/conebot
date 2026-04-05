@@ -26,7 +26,7 @@ function RedeemEarlyAccess.Execute(message, args)
     local url = 'https://apis.roblox.com/cloud/v2/users/' .. robloxId .. '/inventory-items?filter=gamePassIds=' .. Constants.PLACES.ABJ.GAMEPASS
     local response, body = http.request('GET', url, Constants.HEADERS)
 
-    if response.code ~= 200 then
+    if response.code ~= 200 and response.code ~= 403 then
         message:reply(Constants.ERRORS.NO_CODE)
         return
     end
@@ -40,7 +40,7 @@ function RedeemEarlyAccess.Execute(message, args)
 
     if data.code and data.code == 'PERMISSION_DENIED' then
         message:reply(
-            'This command requires you to have your inventory set to public!\nClick [this link](https://www.roblox.com/my/account#!/privacy/TradingAndInventory) and set it to **everyone**.\nThen run the command again. You can change it back later.\n-# If you really don\'t wanna, you can alternatively ping a moderator with a video of proof of owning the gamepass.')
+            'This command requires you to have your inventory set to public!\nClick [this link](<https://www.roblox.com/my/account#!/privacy/TradingAndInventory) and set it to **everyone**.\nThen run the command again. You can change it back later.\n-# If you really don\'t wanna, you can alternatively ping a moderator with a video of proof of owning the gamepass.>')
     
     elseif data.inventoryItems and #data.inventoryItems > 0 then
         message:reply('Gave you the role!')
